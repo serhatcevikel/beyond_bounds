@@ -134,6 +134,7 @@ NeuralNetTools
 nFactors
 nlme
 nnet
+nycflights13
 odbc
 pander
 parallelly
