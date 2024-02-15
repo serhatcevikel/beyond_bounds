@@ -1,5 +1,5 @@
-cranlist <- readLines("rpackageexists")
-githublist <- readLines("rgithub")
+cranlist <- readLines("binder/rpackageexists")
+githublist <- readLines("binder/rgithub")
 
 ## cran packages
 for (package in cranlist)
