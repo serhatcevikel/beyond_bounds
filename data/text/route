@@ -1,0 +1,13 @@
+ 6  308-buk-col-2---00-ebgp-gayrettepe-k.statik.turktelekom.com.tr (212.156.139.62)  17.401 ms  14.573 ms  14.713 ms
+ 7  ae15.edge3.Bucharest1.Level3.net (212.162.26.177)  60.455 ms 83.217.231.61 (83.217.231.61)  15.630 ms ae15.edge3.Bucharest1.Level3.net (212.162.26.177)  60.669 ms
+ 8  * * *
+ 9  ae-6.r21.mlanit02.it.bb.gin.ntt.net (129.250.3.194)  42.850 ms  40.736 ms  40.520 ms
+10  hu-0-0-0-8.luk-p2-tho.liquidtelecom.net (5.11.12.18)  67.757 ms ae-4.r00.mrslfr03.fr.bb.gin.ntt.net (129.250.2.77)  53.929 ms hu-0-0-0-8.luk-p2-tho.liquidtelecom.net (5.11.12.18)  66.459 ms
+11  te-0-2-0-0.lza-pe1-cpt.liquidtelecom.com (5.11.12.115)  253.081 ms ae-1.a00.mrslfr02.fr.bb.gin.ntt.net (129.250.3.110)  62.349 ms  62.322 ms
+12  xe-3-5-1-2.a00.mrslfr02.fr.ce.gin.ntt.net (81.25.197.190)  67.153 ms  67.431 ms  67.074 ms
+13  hu-0-0-0-0.lza-p3-jhb.liquidtelecom.net (41.175.242.16)  232.047 ms te0-0-0-24.lfr-p1-mrs.liquidtelecom.com (5.11.13.117)  67.246 ms 41.175.159.36 (41.175.159.36)  251.785 ms
+14  hu-0-1-0-1.lza-p3-jhb.liquidtelecom.com (5.11.12.112)  222.316 ms  222.489 ms  222.630 ms
+15  41.175.159.41 (41.175.159.41)  248.501 ms 41.175.223.169 (41.175.223.169)  239.277 ms  238.479 ms
+16  41.175.159.6 (41.175.159.6)  243.069 ms hu-0-1-0-1.lzm-pe4-lsk.liquidtelecom.net (41.77.148.95)  249.308 ms  250.039 ms
+17  41.175.159.41 (41.175.159.41)  250.677 ms 41.175.159.2 (41.175.159.2)  243.239 ms *
+18  * * mail.parliament.gov.zm (41.77.145.34)  240.585 ms
