@@ -5,7 +5,10 @@ COPY --chown=jovyan:jovyan ./binder ${HOME}/binder
 USER root
 RUN apt update && \
     apt install -y \
-    dnsutils geoip-bin htop libpoppler-cpp-dev traceroute;
+    curseofwar dnsutils geoip-bin htop iputils-ping libpoppler-cpp-dev nmap screen sqlite3 traceroute;
+
+RUN pip install bash_kernel && \ 
+	python -m bash_kernel.install;
 
 RUN Rscript ${HOME}/binder/install2.R; 
 

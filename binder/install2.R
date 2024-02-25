@@ -1,6 +1,6 @@
 #!/bin/env R
 
-cranlist <- c('htm2txt','pdftools')
+cranlist <- c('dm','htm2txt','pdftools')
 
 githublist <- c('trinker/textreadr')
 
