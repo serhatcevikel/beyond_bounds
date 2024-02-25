@@ -10,7 +10,7 @@ RUN apt update && \
 RUN pip install bash_kernel && \ 
 	python -m bash_kernel.install && \ 
 	tldr -u && \ 
-	unminimize;
+	yes | unminimize;
 
 RUN Rscript ${HOME}/binder/install2.R; 
 
