@@ -5,7 +5,7 @@ COPY --chown=jovyan:jovyan ./binder ${HOME}/binder
 USER root
 RUN apt update && \
     apt install -y \
-    curseofwar dnsutils geoip-bin htop iputils-ping libpoppler-cpp-dev nmap screen sqlite3 traceroute;
+    curseofwar dnsutils geoip-bin htop iputils-ping libpoppler-cpp-dev nmap screen sqlite3 tldr traceroute;
 
 RUN pip install bash_kernel && \ 
 	python -m bash_kernel.install;
