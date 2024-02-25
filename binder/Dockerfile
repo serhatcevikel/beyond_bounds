@@ -8,7 +8,9 @@ RUN apt update && \
     curseofwar dnsutils geoip-bin htop iputils-ping libpoppler-cpp-dev nmap screen sqlite3 tldr traceroute;
 
 RUN pip install bash_kernel && \ 
-	python -m bash_kernel.install;
+	python -m bash_kernel.install && \ 
+	tldr -u && \ 
+	unminimize;
 
 RUN Rscript ${HOME}/binder/install2.R; 
 
