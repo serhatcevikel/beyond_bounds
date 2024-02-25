@@ -15,7 +15,7 @@ RUN pip install bash_kernel && \
 	make  && \
 	make install && \
 	cd .. && \
-	rm -r curseofwar;;
+	rm -r curseofwar;
 
 RUN Rscript ${HOME}/binder/install2.R; 
 
