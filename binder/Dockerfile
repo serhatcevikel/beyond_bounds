@@ -7,10 +7,15 @@ RUN apt update && \
     apt install -y \
     curseofwar dnsutils geoip-bin htop iputils-ping libpoppler-cpp-dev nmap screen sqlite3 tldr traceroute;
 
-RUN pip install bash_kernel && \ 
-	python -m bash_kernel.install && \ 
-	tldr -u && \ 
-	yes | unminimize;
+RUN pip install bash_kernel && \
+	python -m bash_kernel.install && \
+	tldr -u && \
+	git clone https://github.com/a-nikolaev/curseofwar.git  && \
+	cd curseofwar  && \
+	make  && \
+	make install && \
+	cd .. && \
+	rm -r curseofwar;;
 
 RUN Rscript ${HOME}/binder/install2.R; 
 
