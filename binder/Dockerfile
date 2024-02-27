@@ -17,8 +17,7 @@ RUN pip install bash_kernel && \
 	cd .. && \
 	rm -r curseofwar;
 
-RUN printf "hardstatus on\nhardstatus alwayslastline\nhardstatus string \"%%w\"\n" >> ${HOME}/.screenrc && \
-	echo "if [ -z \"\$STY\" ]; then exec screen -ARR; fi" >> ${HOME}/.bashrc;
+RUN printf "hardstatus on\nhardstatus alwayslastline\nhardstatus string \"%%w\"\n" >> ${HOME}/.screenrc;
 
 RUN Rscript ${HOME}/binder/install2.R; 
 
