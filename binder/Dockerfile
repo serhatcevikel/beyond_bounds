@@ -1,4 +1,4 @@
-FROM gesiscss/binder-r2d-g5b5b759-serhatcevikel-2dbeyond-5fbounds-cb7907:4952abac77427e049e31261eec9b7a8a46c5fa50
+FROM gesiscss/binder-r2d-g5b5b759-serhatcevikel-2dbeyond-5fbounds-cb7907:f77376af768c67a0d1ab06ebb25896b00f949c7b
 
 COPY --chown=jovyan:jovyan . ${HOME}
 
