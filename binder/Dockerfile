@@ -5,7 +5,7 @@ COPY --chown=jovyan:jovyan ./binder ${HOME}/binder
 USER root
 RUN apt update && \
     apt install -y \
-    bc bsdmainutils curseofwar dnsutils geoip-bin htop iputils-ping libpoppler-cpp-dev lynx nmap parallel screen sqlite3 tldr traceroute w3m;
+    bc bsdmainutils curseofwar dnsutils geoip-bin htop iputils-ping libpoppler-cpp-dev lynx nano nmap parallel screen sqlite3 tldr traceroute vim w3m;
 
 RUN pip install bash_kernel && \
 	python -m bash_kernel.install && \
@@ -16,6 +16,9 @@ RUN pip install bash_kernel && \
 	make install && \
 	cd .. && \
 	rm -r curseofwar;
+
+RUN printf "hardstatus on\nhardstatus alwayslastline\nhardstatus string \"%%w\"\n" >> ${HOME}/.screenrc && \
+	echo "if [ -z \"\$STY\" ]; then exec screen -ARR fi" >> ${HOME}/.bashrc;
 
 RUN Rscript ${HOME}/binder/install2.R; 
 
