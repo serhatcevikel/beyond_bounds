@@ -12,6 +12,6 @@ RUN \
     rm -r ${HOME}/binder;
 
 RUN \
-   chown -R ${NB_USER}:${NB_USER} /etc/ssh; \
+   chown -R ${NB_USER}:${NB_USER} /etc/ssh;
 
 WORKDIR ${HOME}
