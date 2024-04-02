@@ -8,12 +8,7 @@ RUN apt update && \
     apt install -y openssh-server netcat;
 
 RUN cp ${HOME}/binder/sshd_config /etc/ssh/; \
-    rm -r ${HOME}/binder;
-
-RUN chown -R ${NB_USER}:${NB_USER} /etc/ssh;
-
-USER ${NB_USER}
-
-RUN ssh-keygen -A;
+    rm -r ${HOME}/binder; \
+    chmod 666 /etc/ssh/ssh_host_*;    
 
 WORKDIR ${HOME}
