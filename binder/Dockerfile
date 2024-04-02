@@ -9,6 +9,7 @@ RUN apt update && \
 
 RUN \
     cp ${HOME}/binder/sshd_config /etc/ssh/; \
+    ssh-keygen -A; \
     rm -r ${HOME}/binder;
 
 RUN \
