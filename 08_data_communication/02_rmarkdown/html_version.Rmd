@@ -1,0 +1,231 @@
+---
+title: "DATA VISUALIZATION"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+
+bibliography: bib/thesis.bib
+biblio-style: apalike
+link-citations: yes
+---
+
+```{r setup, include=FALSE}
+# load libraries
+library(knitr)
+library(data.table)
+library(tidyverse)
+library(kableExtra)
+library(data.table)
+library(tidyverse)
+library(plotly)
+library(nycflights13)
+library(pander)
+
+knitr::opts_chunk$set(echo = F, cache = TRUE, warning = FALSE, message = FALSE)
+options(scipen = 999)
+
+```
+
+# Introduction
+
+Here we port the 01_visualization.ipynb notebook into an Rmarkdown file to be rendered into an html document.
+
+We can use markdown syntax:
+
+- list items
+- like that
+
+*italic*
+
+**bold**
+
+***bold and italic***
+
+Formulas using latex:
+
+$${E=mc^{2}}$$
+
+Or change formatting with html:
+
+<font color="red"> Red colored tex </font>
+
+We can cite resources in bibliography file and they will be added to the references automatically [@savitch2001; @salisbury1997]
+
+We can add in line R code like first ten numbers: `r pander(1:10)`
+
+We can add a chunk for a fancy table:
+
+```{r}
+kable(head(iris, 5), booktabs = TRUE) %>%
+  kable_styling(font_size = 8)
+```
+
+In Rmarkdown codes are inserted by chunks or inline, there are no cells as in jupyter notebooks.
+
+`rmarkdown::convert_ipynb` function can convert an ipynb to an Rmd file.
+
+# ggplot2
+
+Let's wrangle flights slightly:
+
+```{r echo = T}
+flights2 <- copy(flights)
+setDT(flights2)
+flights2[, date1 := as.Date(time_hour)]
+flights2 <- flights2 %>% mutate_at(vars(ends_with("time")), function(x) hm(sprintf("%s:%s", x %/% 100, x %% 100)))
+flights2[, speed := distance / period_to_seconds(air_time) * 3600]
+```
+
+Now first let's create a line chart across dates, where y axis shows the average departure delay for each day
+
+The dimensions are passed by `aes()` function:
+
+```{r}
+flights2 %>%
+group_by(date1) %>%
+summarise_at("dep_delay", mean, na.rm = T) %>%
+ggplot(aes(x = date1, y = dep_delay)) +
+geom_line()
+```
+
+Now let's differentiate the lines by color according to the origin airport, so we add a third dimension:
+
+```{r}
+flights2 %>%
+group_by(date1, origin) %>%
+summarise_at("dep_delay", mean, na.rm = T) %>%
+ggplot(aes(x = date1, y = dep_delay, color = origin)) +
+geom_line()
+```
+
+Let's try a scatter plot across average daily departure and array delays:
+
+```{r}
+flights2 %>%
+group_by(date1) %>%
+summarise_at(c("dep_delay", "arr_delay"), mean, na.rm = T) %>%
+ggplot(aes(x = dep_delay, y = arr_delay)) +
+geom_point()
+```
+
+Let's add a third dimension by changing the size of points according to the flight distance, so we have a bubble chart:
+
+```{r}
+flights2 %>%
+group_by(date1) %>%
+summarise_at(c("dep_delay", "arr_delay", "distance"), mean, na.rm = T) %>%
+ggplot(aes(x = dep_delay, y = arr_delay, size = distance)) +
+geom_point(alpha = 0.5)
+```
+
+And let's add a fourth dimension by changing the color of points according to the origin airport:
+
+```{r}
+flights2 %>%
+group_by(date1, origin) %>%
+summarise_at(c("dep_delay", "arr_delay", "distance"), mean, na.rm = T) %>%
+ggplot(aes(x = dep_delay, y = arr_delay, size = distance, color = origin)) +
+geom_point(alpha = 0.5)
+```
+
+And we can create multiple charts for each weekday using `facet_wrap()` function, now we have five dimensions:
+
+```{r}
+flights2 %>%
+group_by(date1, origin) %>%
+summarise_at(c("dep_delay", "arr_delay", "distance"), mean, na.rm = T) %>%
+mutate(weekday = lubridate::wday(date1, label = T)) %>%
+ggplot(aes(x = dep_delay, y = arr_delay, size = distance, color = origin)) +
+geom_point(alpha = 0.5) +
+facet_wrap(. ~ weekday)
+```
+
+And let's create a separate chart for each combinations of a weekday and a quarter (three months) using `facet_grid()` function, we have six dimensions!:
+
+```{r}
+flights2 %>%
+group_by(date1, origin) %>%
+summarise_at(c("dep_delay", "arr_delay", "distance"), mean, na.rm = T) %>%
+mutate(weekday = lubridate::wday(date1, label = T)) %>%
+mutate(mnt = month(date1)) %>%
+mutate(quartx = paste("Q", (mnt - 1) %/% 3 + 1), sep = "") %>%
+ggplot(aes(x = dep_delay, y = arr_delay, size = distance, color = origin)) +
+geom_point(alpha = 0.5) +
+facet_grid(weekday ~ quartx)
+```
+
+# plotly
+
+So far we had static charts with no interactions, just pictures.
+
+Now let's do something fancy very easily:
+
+- First create a ggplot chart and assign to a named object
+- Call that object with `ggplotly()` function from plotly package
+
+```{r}
+pl1 <- flights2 %>%
+group_by(date1, origin) %>%
+summarise_at(c("dep_delay", "arr_delay", "distance"), mean, na.rm = T) %>%
+ggplot(aes(x = dep_delay, y = arr_delay, size = distance, color = origin)) +
+geom_point(alpha = 0.5)
+
+ggplotly(pl1)
+```
+
+It is the same chart, but we can hover over points and see the data in pop-up tooltip, we can switch colors on and off, zoom, pan, etc.
+
+Faceted charts can also be converted to plotly:
+
+```{r}
+pl2 <- flights2 %>%
+group_by(date1, origin) %>%
+summarise_at(c("dep_delay", "arr_delay", "distance"), mean, na.rm = T) %>%
+mutate(weekday = lubridate::wday(date1, label = T)) %>%
+ggplot(aes(x = dep_delay, y = arr_delay, size = distance, color = origin)) +
+geom_point(alpha = 0.5) +
+facet_wrap(. ~ weekday)
+
+ggplotly(pl2)
+```
+
+We can also create animated charts using plotly's own syntax and passing a feature for the `frame` dimensions:
+
+```{r}
+flights2 %>%
+group_by(date1, origin) %>%
+summarise_at(c("dep_delay", "arr_delay", "distance"), mean, na.rm = T) %>%
+mutate(mnt = month(date1)) %>%
+plot_ly(x = ~dep_delay, y = ~arr_delay) %>%
+add_trace(marker = list(color = origin), frame = ~mnt, type = "scatter") %>%
+animation_opts(
+    frame = 200, redraw = T, easing = "linear", mode = "next"
+)
+```
+
+
+We can even create 3d interactive rotatable charts easily in plotly:
+
+```{r}
+flights3 <- flights2 %>%
+group_by(date1, origin) %>%
+summarise_at(c("dep_delay", "arr_delay", "distance"), mean, na.rm = T) %>%
+mutate(mnt = month(date1))
+
+if (T)
+{    
+    plot_ly() %>% 
+          add_trace(data = flights3,  x = flights3$dep_delay, y = flights3$arr_delay, z = flights3$distance, type="mesh3d") %>%
+            layout(autosize = F, width = 400, height = 400,
+                  scene = list(xaxis = list(title = "dep_delay"),
+                  yaxis = list(title = "arr_delay"),
+                  zaxis = list(title = "distance")))
+}
+```
+
+# Conclusion
+
+So we can render any interactive plots in an html document format
+
+# References
