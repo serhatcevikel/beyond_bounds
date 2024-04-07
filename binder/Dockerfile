@@ -7,8 +7,7 @@ USER root
 RUN apt update && \
     apt install -y openssh-server netcat pssh ncdu;
 
-RUN cp ${HOME}/binder/sshd_config /etc/ssh/; \
-    rm -r ${HOME}/binder; \
+RUN cp ${HOME}/binder/sshd_config /etc/ssh/ && \
     chmod 666 /etc/ssh/ssh_host_*;    
 
 RUN pip install sos sos-pbs sos-notebook sos-r sos-python sos-bash && \
