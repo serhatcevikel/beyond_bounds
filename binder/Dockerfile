@@ -6,7 +6,7 @@ USER root
 
 RUN apt update && \
     apt install -y openssh-server netcat pssh ncdu rsync \
-        lspci lshw encfs fuse3;
+        pciutils lshw encfs fuse3;
 
 RUN cp ${HOME}/binder/sshd_config /etc/ssh/ && \
     chmod 666 /etc/ssh/ssh_host_*;    
