@@ -11,7 +11,15 @@ BiocManager::install()
 BiocManager::install("BiocParallel")
 
 cranlist <- c('graphframes', 'doFuture', 'future.callr', 'future.tests', 'mirai',
-'snowfall', 'doSNOW', 'doMC', 'parSim', 'ropenblas', 'BDgraph', 'ssgraph', 'brms')
+'snowfall', 'doSNOW', 'doMC', 'parSim', 'ropenblas', 'BDgraph', 'ssgraph', 'brms',
+'safer', 'cyphr', 'encryptr', 'optimx', 'readsparse', 'treemap', 'betareg', 'cdfquantreg',
+'evgam', 'extraDistr', 'fastNaiveBayes', 'fitdistrplus', 'actuar', 'bda', 'fractaldim', 'isotone',
+'lqmm', 'mlogit', 'monreg', 'fdrtool', 'Mqrcm', 'naivebayes', 'qgam', 'qrcmNP', 'qrLMM', 'qrnn',
+'quantregForest', 'quantregGrowth', 'Rfit', 'rlme', 'runner', 'siqr', 'unitquantreg', 'vasicekreg',
+'VGAM', 'zoib', 'FlexReg', 'betaBayes')
+
+githublist <- c('AndrMenezes/unitModalReg')
+
 
 ## cran packages
 for (package in cranlist)
@@ -19,6 +27,14 @@ for (package in cranlist)
     if (!require(package, character.only = T, quietly = T))
     {
         install.packages(package)
+    }
+}
+
+for (package in githublist)
+{ 
+    if (!require(package, character.only = T, quietly = T))
+    {
+        devtools::install_github(package)
     }
 }
 
