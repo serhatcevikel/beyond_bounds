@@ -5,13 +5,15 @@ COPY --chown=jovyan:jovyan ./binder ${HOME}/binder
 USER root
 
 RUN apt update && \
-    apt install -y openssh-server netcat pssh ncdu;
+    apt install -y openssh-server netcat pssh ncdu rsync \
+        lspci lshw encfs fuse3;
 
 RUN cp ${HOME}/binder/sshd_config /etc/ssh/ && \
     chmod 666 /etc/ssh/ssh_host_*;    
 
 RUN pip install sos sos-pbs sos-notebook sos-r sos-python sos-bash && \
-	python -m sos_notebook.install;
+	python -m sos_notebook.install && \
+    jupyter labextension install jupyterlab-sos;
 
 RUN Rscript ${HOME}/binder/install3.r; 
 

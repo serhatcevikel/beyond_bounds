@@ -10,7 +10,8 @@ install.packages("BiocManager")
 BiocManager::install()
 BiocManager::install("BiocParallel")
 
-cranlist <- c('graphframes', 'doFuture', 'future.callr', 'future.tests', 'mirai')
+cranlist <- c('graphframes', 'doFuture', 'future.callr', 'future.tests', 'mirai',
+'snowfall', 'doSNOW', 'doMC', 'parSim', 'ropenblas', 'BDgraph', 'ssgraph', 'brms')
 
 ## cran packages
 for (package in cranlist)
