@@ -1,0 +1,8 @@
+sos
+sos-pbs
+sos-notebook
+sos-r
+sos-python
+sos-bash
+jupyterlab-sos
+bash_kernel
