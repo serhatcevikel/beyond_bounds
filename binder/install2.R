@@ -1,6 +1,6 @@
 #!/bin/env R
 
-cranlist <- c('dm','htm2txt','pdftools')
+cranlist <- c('AER','babynames','ckanr','dataverse','dbscan','dm','dslabs','fueleconomy','gapminder','ggstatsplot','here','htm2txt','janeaustenr','Lahman','leaflet.extras','leaflet.extras2','maps','mosaicData','pdftools','plm','renv','rjson','RKaggle','rsconnect','sentimentr','ucimlrepo','WDI','wooldridge','yarrr')
 
 githublist <- c('trinker/textreadr')
 
@@ -9,7 +9,7 @@ for (package in cranlist)
 { 
     if (!require(package, character.only = T, quietly = T))
     {
-        install.packages(package)
+        install.packages(package, repo = "https://packagemanager.posit.co/cran/2025-04-19")
     }
 }
 
