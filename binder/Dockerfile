@@ -13,7 +13,7 @@ RUN git clone https://github.com/jqlang/jq.git  && \
 	autoreconf -i  && \
 	./configure --with-oniguruma=builtin  && \
 	make clean  && \
-	make -j8  && \
+	make LDFLAGS=-all-static  && \
 	make install && \
 	cd .. && \
 	rm -r jq;
