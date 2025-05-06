@@ -1,6 +1,6 @@
 #!/bin/env R
 
-cranlist <- c('AER','babynames','ckanr','dataverse','dbscan','dm','dslabs','fueleconomy','gapminder','ggstatsplot','here','htm2txt','janeaustenr','Lahman','leaflet.extras','leaflet.extras2','maps','mosaicData','pdftools','plm','renv','rjson','RKaggle','rsconnect','sentimentr','ucimlrepo','WDI','wooldridge','yarrr')
+cranlist <- c('AER','babynames','ckanr','dataverse','dbscan','dm','dslabs','fueleconomy','gapminder','ggstatsplot','here','htm2txt','janeaustenr','Lahman','leaflet.extras','leaflet.extras2','maps','mosaicData','pdftools','plm','renv','rjson','RKaggle','rsconnect','sentimentr','trialr','ucimlrepo','WDI','wooldridge','yarrr')
 
 cranlist2 <- c('ggstatsplot')
 

@@ -5,7 +5,7 @@ COPY --chown=jovyan:jovyan ./binder ${HOME}/binder
 USER root
 RUN apt update && \
     apt install -y \
-    bc bsdmainutils curseofwar dnsutils geoip-bin htop iputils-ping libpoppler-cpp-dev libx11-dev lynx nano nmap parallel pari-gp screen sqlite3 tldr traceroute vim w3m;
+    bc bsdmainutils curseofwar dnsutils geoip-bin htop iputils-ping libpoppler-cpp-dev libx11-dev lynx nano nmap p7zip-full p7zip-rar pandoc-citeproc parallel pari-gp screen sqlite3 tldr traceroute vim w3m;
 
 RUN git clone https://github.com/jqlang/jq.git  && \
 	cd jq  && \
@@ -20,6 +20,7 @@ RUN git clone https://github.com/jqlang/jq.git  && \
 
 RUN pip install bash_kernel && \
 	python -m bash_kernel.install && \
+	jupyter labextension disable @jupyterlab/apputils-extension:announcements && \
 	tldr -u && \
 	git clone https://github.com/a-nikolaev/curseofwar.git  && \
 	cd curseofwar  && \
