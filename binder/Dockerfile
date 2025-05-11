@@ -5,7 +5,7 @@ COPY --chown=jovyan:jovyan ./binder ${HOME}/binder
 USER root
 RUN apt update && \
     apt install -y \
-    bc bsdmainutils curseofwar dnsutils geoip-bin htop iputils-ping libpoppler-cpp-dev libx11-dev lynx nano nmap p7zip-full p7zip-rar pandoc-citeproc parallel pari-gp screen sqlite3 tldr traceroute vim w3m;
+    bc bsdmainutils curseofwar dnsutils geoip-bin htop iputils-ping libnetcdf-dev libpoppler-cpp-dev libx11-dev lynx nano nmap p7zip-full p7zip-rar pandoc-citeproc parallel pari-gp screen sqlite3 tldr traceroute vim w3m;
 
 RUN git clone https://github.com/jqlang/jq.git  && \
 	cd jq  && \

@@ -1,10 +1,10 @@
 #!/bin/env R
 
-cranlist <- c('AER','babynames','ckanr','dataverse','dbscan','dm','dslabs','fueleconomy','gapminder','ggstatsplot','here','htm2txt','janeaustenr','Lahman','leaflet.extras','leaflet.extras2','maps','mosaicData','pdftools','plm','renv','rjson','RKaggle','rsconnect','sentimentr','trialr','ucimlrepo','WDI','wooldridge','yarrr')
+cranlist <- c('AER','babynames','ckanr','cvms','dataverse','dbscan','dm','dslabs','fields','fueleconomy','gapminder','ggstatsplot','here','htm2txt','janeaustenr','Lahman','leaflet.extras','leaflet.extras2','maps','mosaicData','MultiRNG','pdftools','plm','renv','rjson','RKaggle','rsconnect','sentimentr','trialr','ucimlrepo','WDI','wooldridge','yarrr')
 
 cranlist2 <- c('ggstatsplot')
 
-githublist <- c('trinker/textreadr')
+githublist <- c('trinker/textreadr','cmartin/ggConvexHull','TileDB-Inc/shinybg')
 
 cranlist2 <- intersect(cranlist2, cranlist)
 cranlist <- setdiff(cranlist, cranlist2)
