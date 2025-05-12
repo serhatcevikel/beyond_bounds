@@ -25,11 +25,11 @@ server = function(input, output) {
 
       p <-  data_all_k3 %>%
         ggplot(aes(x = xval, y = yval, fill = cl, size = 5 + cntr * 10)) +
+        geom_convexhull(data = data_all_k3[cntr == 0], alpha= 0.2, aes(color = NULL, fill = cl)) +
         geom_point(shape=21, color = "red", aes(stroke = chng * 0.5, fill = cl, alpha = 1 - cntr * 0.5)) +
         scale_size_identity() +
         scale_fill_manual(labels = unique(data_all_k3$cl), values = unique(data_all_k3$clr)) +
         scale_alpha_identity() +
-        geom_convexhull(data = data_all_k3[cntr == 0], alpha= 0.2, aes(color = NULL, fill = cl)) +
         theme(legend.position="bottom") +
         labs(x = NULL, y = NULL)
       
