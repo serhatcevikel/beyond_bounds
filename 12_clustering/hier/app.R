@@ -24,8 +24,8 @@ server = function(input, output) {
       
       p <-  data_all2 %>%
         ggplot(aes(x = xval, y = yval, stroke = linex, size = 5)) +
-        geom_point(shape=21, color = "red", aes(fill = cl)) +
         geom_convexhull(alpha=.5, aes(fill = cl), colour = "black", linewidth = 0.1) +
+        geom_point(shape=21, color = "red", aes(fill = cl)) +
         scale_fill_manual(labels = unique(data_all2$cl), values = unique(data_all2$clr)) +
         scale_size_identity() +
         guides(color = "none") +
