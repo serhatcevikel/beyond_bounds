@@ -10,7 +10,7 @@ install.packages("BiocManager")
 BiocManager::install()
 BiocManager::install("BiocParallel")
 
-cranlist <- c('graphframes', 'doFuture', 'future.callr', 'future.tests', 'mirai',
+cranlist <- c('sparsio', 'graphframes', 'doFuture', 'future.callr', 'future.tests', 'mirai',
 'snowfall', 'doSNOW', 'doMC', 'parSim', 'ropenblas', 'BDgraph', 'ssgraph', 'brms',
 'safer', 'cyphr', 'encryptr', 'optimx', 'readsparse', 'treemap', 'betareg', 'cdfquantreg',
 'evgam', 'extraDistr', 'fastNaiveBayes', 'fitdistrplus', 'actuar', 'bda', 'fractaldim', 'isotone',
