@@ -1,5 +1,5 @@
 #!/bin/env R
-
+#
 if ("h2o" %in% rownames(installed.packages())) { remove.packages("h2o") }
 if ("rsparkling" %in% rownames(installed.packages())) { remove.packages("rsparkling") }
 options(timeout = 600)
